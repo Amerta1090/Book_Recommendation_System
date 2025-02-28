@@ -269,11 +269,6 @@ Pada bagian ini, dilakukan beberapa tahapan data preparation untuk memastikan da
    - **Alasan**: Rekomendasi ini bertujuan untuk memberikan saran buku yang sesuai dengan preferensi pengguna.
 
 ---
-
-### **Kesimpulan**
-- Dengan mengikuti struktur yang lebih teratur dan memisahkan pendekatan Content-Based Filtering dan Collaborative Filtering, laporan ini menjadi lebih jelas dan mudah dipahami. Pembaca dapat mengikuti alur proses data preparation dan pemodelan dengan lebih baik.
----
-
 ## Modeling
 
 Pada tahapan ini, dua solusi sistem rekomendasi dibangun menggunakan pendekatan yang berbeda: **Content-Based Filtering** dan **Collaborative Filtering**. Kedua pendekatan ini digunakan untuk memberikan rekomendasi buku kepada pengguna berdasarkan data yang telah dipersiapkan sebelumnya.
