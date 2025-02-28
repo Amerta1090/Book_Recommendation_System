@@ -403,7 +403,10 @@ Setelah menerapkan model dan melakukan evaluasi, berikut adalah hasil yang diper
   - Hasil RMSE yang diperoleh adalah **0.168**. RMSE yang diperoleh menunjukkan bahwa model telah menghasilkan prediksi yang cukup akurat secara keseluruhan. Meskipun ada beberapa variasi pada prediksi tertentu, nilai RMSE yang relatif rendah ini menunjukkan performa model yang baik. Namun, masih ada peluang untuk lebih menyempurnakan model guna mencapai akurasi yang lebih tinggi.
 
 - **NDCG@K**: 
-  - Hasil NDCG@5 yang diperoleh adalah **0.7836**. Ini menunjukkan bahwa model memberikan rekomendasi yang relevan dengan baik, terutama pada posisi teratas.
+  - Hasil NDCG@5 yang diperoleh adalah **0.9516895346301714**. Ini menunjukkan bahwa model memberikan rekomendasi yang relevan dengan baik, terutama pada posisi teratas.
+    
+    ![image](https://github.com/user-attachments/assets/bcd80f13-e2dd-4b23-8e13-7659af5ef64c)
+
 
 ### Kesimpulan
 Metrik evaluasi yang digunakan memberikan gambaran yang jelas tentang performa sistem rekomendasi. Meskipun hasil menunjukkan bahwa model sudah cukup baik, ada ruang untuk perbaikan, terutama dalam mengurangi kesalahan prediksi dan meningkatkan relevansi rekomendasi. Dengan melakukan tuning model dan eksplorasi lebih lanjut terhadap data, diharapkan performa sistem rekomendasi dapat ditingkatkan.---
