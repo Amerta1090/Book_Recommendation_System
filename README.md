@@ -258,16 +258,6 @@ Pada bagian ini, dilakukan beberapa tahapan data preparation untuk memastikan da
      - Membuat matriks interaksi pengguna-buku dalam bentuk sparse matrix untuk digunakan dalam model collaborative filtering.  
    - **Alasan**: Matriks ini merepresentasikan hubungan antara pengguna dan buku berdasarkan rating yang diberikan.
 
-#### **13. Modeling dan Evaluasi**
-   - **Proses**:  
-     - Menggunakan model RecommenderNet untuk memprediksi rating dan mengevaluasi performa model.  
-   - **Alasan**: Evaluasi diperlukan untuk memastikan model memberikan rekomendasi yang akurat dan relevan.
-
-#### **14. Rekomendasi Berdasarkan Prediksi**
-   - **Proses**:  
-     - Menghasilkan rekomendasi buku untuk pengguna berdasarkan prediksi rating yang dihasilkan oleh model.  
-   - **Alasan**: Rekomendasi ini bertujuan untuk memberikan saran buku yang sesuai dengan preferensi pengguna.
-
 ---
 ## Modeling
 
