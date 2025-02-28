@@ -189,66 +189,89 @@ Beberapa tahapan EDA yang dilakukan untuk memahami data meliputi:
 
 Pada bagian ini, dilakukan beberapa tahapan data preparation untuk memastikan data siap digunakan dalam pembangunan model. Berikut adalah teknik dan proses yang dilakukan:
 
-### 1. **Penggabungan Dataset**
-   - **Proses**: Menggabungkan dataset **Users.csv**, **Ratings.csv**, dan **Books.csv** menjadi satu dataframe menggunakan kolom **User-ID** dan **ISBN** sebagai kunci penggabungan.  
+### **1. Penggabungan Dataset**
+   - **Proses**: Menggabungkan dataset **Users.csv**, **Ratings.csv**, dan **Books.csv** menjadi satu dataframe menggunakan kolom **User -ID** dan **ISBN** sebagai kunci penggabungan.  
    - **Alasan**: Penggabungan diperlukan untuk menghubungkan informasi pengguna, rating, dan buku dalam satu dataframe sehingga memudahkan analisis dan pemodelan.
 
-### 2. **Penanganan Missing Values**
+### **2. Penanganan Missing Values**
    - **Proses**:  
      - Mengecek jumlah missing values pada setiap kolom.  
      - Menghapus baris yang memiliki missing values pada kolom **Age** karena data usia penting untuk analisis demografi pengguna.  
      - Menghapus missing values pada kolom lain seperti **ISBN**, **Book-Title**, **Book-Author**, **Year-Of-Publication**, dan **Publisher** karena data ini diperlukan untuk membangun sistem rekomendasi.  
    - **Alasan**: Missing values dapat mengurangi kualitas data dan mempengaruhi akurasi model. Penanganan ini memastikan data yang digunakan bersih dan lengkap.
 
-### 3. **Penanganan Duplikasi Data**
+### **3. Penanganan Duplikasi Data**
    - **Proses**:  
      - Mengecek jumlah data duplikat.  
      - Menghapus data duplikat jika ditemukan.  
    - **Alasan**: Data duplikat dapat menyebabkan bias dalam analisis dan pemodelan. Menghapus duplikat memastikan setiap entri data unik.
 
-### 4. **Penanganan Outlier**
+### **4. Penanganan Outlier**
    - **Proses**:  
      - Mengecek outlier pada kolom **Age** dan **Year-Of-Publication** menggunakan boxplot.  
      - Menghapus outlier dengan metode IQR (Interquartile Range) untuk memastikan data berada dalam rentang yang wajar.  
    - **Alasan**: Outlier dapat mempengaruhi hasil analisis dan pemodelan. Menghapus outlier membantu meningkatkan kualitas data.
 
-### 5. **Konversi Tipe Data**
+### **5. Konversi Tipe Data**
    - **Proses**:  
      - Mengubah kolom **Year-Of-Publication** menjadi tipe data numerik (integer) untuk memudahkan analisis.  
-     - Mengubah kolom **User-ID** dan **ISBN** menjadi tipe data kategori untuk mengoptimalkan penggunaan memori.  
+     - Mengubah kolom **User -ID** dan **ISBN** menjadi tipe data kategori untuk mengoptimalkan penggunaan memori.  
    - **Alasan**: Konversi tipe data memastikan data sesuai dengan kebutuhan analisis dan pemodelan serta mengoptimalkan performa komputasi.
 
-### 6. **Normalisasi Rating**
+### **6. Normalisasi Rating**
    - **Proses**:  
      - Melakukan normalisasi pada kolom **Book-Rating** ke skala 0-1 menggunakan min-max normalization.  
    - **Alasan**: Normalisasi membantu menyamakan skala data sehingga memudahkan proses pemodelan, terutama pada algoritma yang sensitif terhadap skala data.
 
-### 7. **Pembuatan Matriks Interaksi Pengguna-Buku**
+### **7. Pembuatan Matriks Interaksi Pengguna-Buku**
    - **Proses**:  
      - Membuat matriks interaksi pengguna-buku dalam bentuk sparse matrix menggunakan library **scipy.sparse**.  
    - **Alasan**: Matriks interaksi ini diperlukan untuk membangun model collaborative filtering, di mana matriks ini merepresentasikan hubungan antara pengguna dan buku berdasarkan rating.
 
-### 8. **Filtering Data**
+### **8. Filtering Data**
    - **Proses**:  
      - Memfilter pengguna dan buku yang memiliki jumlah rating kurang dari 5 untuk mengurangi noise dan meningkatkan kualitas data.  
    - **Alasan**: Data dengan terlalu sedikit rating dapat menyebabkan rekomendasi yang tidak akurat. Filtering ini memastikan hanya data yang relevan yang digunakan.
 
-### 9. **Pembagian Data Training dan Testing**
+### **9. Pembagian Data Training dan Testing**
    - **Proses**:  
      - Membagi data menjadi training set (80%) dan testing set (20%) menggunakan **train_test_split** dari library **sklearn**.  
    - **Alasan**: Pembagian data diperlukan untuk melatih model dan menguji performanya secara terpisah, sehingga dapat menghindari overfitting.
 
-### 10. **Pembuatan Fitur Gabungan untuk Content-Based Filtering**
+### **Content-Based Filtering**
+
+#### **10. Pembuatan Fitur Gabungan untuk Content-Based Filtering**
    - **Proses**:  
      - Menggabungkan kolom **Book-Author** dan **Publisher** menjadi satu kolom baru (**combined_features**) untuk digunakan dalam TF-IDF Vectorizer.  
    - **Alasan**: Fitur gabungan ini digunakan untuk menghitung kesamaan konten antar buku dalam pendekatan content-based filtering.
 
-### 11. **Ekstraksi Fitur dengan TF-IDF**
+#### **11. Ekstraksi Fitur dengan TF-IDF**
    - **Proses**:  
      - Menggunakan **TfidfVectorizer** untuk mengubah kolom **combined_features** menjadi vektor numerik.  
      - Menghitung TF-IDF untuk mengukur pentingnya setiap kata dalam konteks buku yang berbeda.  
    - **Alasan**: TF-IDF membantu dalam mengukur relevansi dan kesamaan antar buku berdasarkan fitur teks, yang penting untuk sistem rekomendasi berbasis konten.
 
+### **Collaborative Filtering**
+
+#### **12. Pembuatan Matriks Interaksi untuk Collaborative Filtering**
+   - **Proses**:  
+     - Membuat matriks interaksi pengguna-buku dalam bentuk sparse matrix untuk digunakan dalam model collaborative filtering.  
+   - **Alasan**: Matriks ini merepresentasikan hubungan antara pengguna dan buku berdasarkan rating yang diberikan.
+
+#### **13. Modeling dan Evaluasi**
+   - **Proses**:  
+     - Menggunakan model RecommenderNet untuk memprediksi rating dan mengevaluasi performa model.  
+   - **Alasan**: Evaluasi diperlukan untuk memastikan model memberikan rekomendasi yang akurat dan relevan.
+
+#### **14. Rekomendasi Berdasarkan Prediksi**
+   - **Proses**:  
+     - Menghasilkan rekomendasi buku untuk pengguna berdasarkan prediksi rating yang dihasilkan oleh model.  
+   - **Alasan**: Rekomendasi ini bertujuan untuk memberikan saran buku yang sesuai dengan preferensi pengguna.
+
+---
+
+### **Kesimpulan**
+- Dengan mengikuti struktur yang lebih teratur dan memisahkan pendekatan Content-Based Filtering dan Collaborative Filtering, laporan ini menjadi lebih jelas dan mudah dipahami. Pembaca dapat mengikuti alur proses data preparation dan pemodelan dengan lebih baik.
 ---
 
 ## Modeling
