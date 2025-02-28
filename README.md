@@ -365,33 +365,32 @@ Pada bagian ini, kami akan membahas metrik evaluasi yang digunakan untuk menilai
 
 1. **Mean Squared Error (MSE)**
    - **Deskripsi**: MSE mengukur rata-rata kesalahan kuadrat antara nilai yang diprediksi dan nilai aktual. Metrik ini memberikan gambaran seberapa jauh prediksi model dari nilai sebenarnya.
-   - **Formula**: 
-     \[
-     \text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
-     \]
-     di mana:
-     - \(y_i\) adalah nilai aktual (rating yang diberikan pengguna).
-     - \(\hat{y}_i\) adalah nilai prediksi (rating yang diprediksi oleh model).
-     - \(n\) adalah jumlah total prediksi.
+   - **Formula**:
+     
+     ![image](https://github.com/user-attachments/assets/9733b044-65ff-44db-b2df-61271dbec688)
+
+     ![image](https://github.com/user-attachments/assets/3d13aa86-2d1b-49f2-a09e-b12e54222459)
+
    - **Cara Kerja**: MSE menghitung selisih kuadrat antara setiap prediksi dan nilai aktual, kemudian mengambil rata-ratanya. Nilai MSE yang lebih rendah menunjukkan model yang lebih baik.
 
 2. **Root Mean Squared Error (RMSE)**
    - **Deskripsi**: RMSE mengukur akar kuadrat dari rata-rata kesalahan kuadrat antara nilai yang diprediksi dan nilai aktual. Metrik ini lebih sensitif terhadap outlier dibandingkan MSE.
    - **Formula**: 
-     \[
-     \text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
-     \]
+
+     ![image](https://github.com/user-attachments/assets/4946c45c-4ccc-4ce9-9066-3c821d2bbe9b)
+
    - **Cara Kerja**: RMSE menghitung selisih kuadrat antara setiap prediksi dan nilai aktual, kemudian mengambil rata-ratanya dan menghitung akar kuadratnya. RMSE yang lebih rendah menunjukkan model yang lebih baik.
 
 3. **NDCG@K (Normalized Discounted Cumulative Gain)**
    - **Deskripsi**: NDCG@K mengukur kualitas urutan rekomendasi dengan mempertimbangkan relevansi dan posisi rekomendasi dalam daftar. Ini memberikan bobot lebih pada rekomendasi yang relevan yang muncul lebih awal dalam daftar.
    - **Formula**: 
-     \[
-     \text{NDCG@K} = \frac{DCG@K}{IDCG@K}
-     \]
+
+     ![image](https://github.com/user-attachments/assets/870d726a-11be-4a9b-b842-09f6cf03bd40)
+
      di mana:
-     - \(DCG@K\) adalah Discounted Cumulative Gain untuk K rekomendasi.
-     - \(IDCG@K\) adalah Ideal DCG untuk K rekomendasi.
+
+     ![image](https://github.com/user-attachments/assets/3f0fbd7c-da3e-46ab-82f9-8e160d2657ad)
+
    - **Cara Kerja**: Menghitung DCG dengan memberikan bobot pada relevansi rekomendasi berdasarkan posisinya, kemudian membandingkannya dengan nilai ideal. Nilai NDCG@K yang lebih tinggi menunjukkan model yang lebih baik dalam memberikan rekomendasi yang relevan.
 
 ### Hasil Proyek Berdasarkan Metrik Evaluasi
