@@ -400,7 +400,7 @@ Setelah menerapkan model dan melakukan evaluasi, berikut adalah hasil yang diper
   - Hasil MSE yang diperoleh adalah 0.0282. Ini menunjukkan bahwa, secara rata-rata, prediksi rating model menyimpang sekitar 0.0282 dari rating aktual. Nilai ini menunjukkan performa yang cukup baik, tetapi masih ada ruang untuk perbaikan.
 
 - **Root Mean Squared Error (RMSE)**: 
-  - Hasil RMSE yang diperoleh adalah **0.168**. RMSE yang diperoleh menunjukkan bahwa model telah menghasilkan prediksi yang cukup akurat secara keseluruhan. Meskipun ada beberapa variasi pada prediksi tertentu, nilai RMSE yang relatif rendah ini menunjukkan performa model yang baik. Namun, masih ada peluang untuk lebih menyempurnakan model guna mencapai akurasi yang lebih tinggi.
+  - Hasil RMSE yang diperoleh adalah **0.16792855623746664**. RMSE yang diperoleh menunjukkan bahwa model telah menghasilkan prediksi yang cukup akurat secara keseluruhan. Meskipun ada beberapa variasi pada prediksi tertentu, nilai RMSE yang relatif rendah ini menunjukkan performa model yang baik. Namun, masih ada peluang untuk lebih menyempurnakan model guna mencapai akurasi yang lebih tinggi.
 
 - **NDCG@K**: 
   - Hasil NDCG@5 yang diperoleh adalah **0.9516895346301714**. Ini menunjukkan bahwa model memberikan rekomendasi yang relevan dengan baik, terutama pada posisi teratas.
