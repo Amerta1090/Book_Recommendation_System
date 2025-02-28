@@ -243,6 +243,12 @@ Pada bagian ini, dilakukan beberapa tahapan data preparation untuk memastikan da
      - Menggabungkan kolom **Book-Author** dan **Publisher** menjadi satu kolom baru (**combined_features**) untuk digunakan dalam TF-IDF Vectorizer.  
    - **Alasan**: Fitur gabungan ini digunakan untuk menghitung kesamaan konten antar buku dalam pendekatan content-based filtering.
 
+### 11. **Ekstraksi Fitur dengan TF-IDF**
+   - **Proses**:  
+     - Menggunakan **TfidfVectorizer** untuk mengubah kolom **combined_features** menjadi vektor numerik.  
+     - Menghitung TF-IDF untuk mengukur pentingnya setiap kata dalam konteks buku yang berbeda.  
+   - **Alasan**: TF-IDF membantu dalam mengukur relevansi dan kesamaan antar buku berdasarkan fitur teks, yang penting untuk sistem rekomendasi berbasis konten.
+
 ---
 
 ## Modeling
@@ -270,6 +276,23 @@ top_n_recommendations_content = get_recommendations('Harry Potter and the Prison
 print(top_n_recommendations_content)
 ```
 
+
+#### Result
+|       |                                        Book-Title |
+|------:|--------------------------------------------------:|
+|  795  | Harry Potter and the Prisoner of Azkaban (Book 3) |
+|  956  | Harry Potter and the Order of the Phoenix (Boo... |
+|  1458 | Harry Potter and the Chamber of Secrets Postca... |
+|  1837 | Harry Potter and the Chamber of Secrets (Book 2)  |
+| 17972 | Harry Potter Schoolbooks: Quidditch Through th... |
+|  792  | Harry Potter and the Goblet of Fire (Book 4)      |
+|  8006 | Harry Potter and the Prisoner of Azkaban (Harr... |
+|  1969 | Harry Potter and the Goblet of Fire (Book 4, A... |
+|  339  | Harry Potter y el prisionero de Azkaban           |
+| 16451 | Harry Potter y la Ã?rden del FÃ©nix               |
+
+
+
 ### 2. **Collaborative Filtering**
 
 #### Deskripsi Model
@@ -294,6 +317,20 @@ top_n_recommendations_collaborative['ISBN'] = top_n_recommendations_collaborativ
 top_n_recommendations_collaborative = top_n_recommendations_collaborative.merge(books_df, on='ISBN', how='inner')
 print(top_n_recommendations_collaborative[['ISBN', 'Book-Title', 'predicted_rating']])
 ```
+#### Result
+
+|   |       ISBN |                                        Book-Title | predicted_rating |
+|--:|-----------:|--------------------------------------------------:|-----------------:|
+| 0 | 0140434267 | Pride and Prejudice (Penguin Classics)            | 1.061849         |
+| 1 | 0345419081 | The Eight                                         | 1.051651         |
+| 2 | 0812505166 | Wuthering Heights                                 | 1.042394         |
+| 3 | 0451410912 | A Killing Gift                                    | 1.034378         |
+| 4 | 0679734465 | Valis                                             | 1.033839         |
+| 5 | 0590897993 | Bat 6                                             | 1.033251         |
+| 6 | 3458171703 | Der Schatten des Windes.                          | 1.027274         |
+| 7 | 067154683X | DIARY ANNE FRANK                                  | 1.020390         |
+| 8 | 0671697994 | Brothers in Arms                                  | 1.007824         |
+| 9 | 0553574353 | Helter Skelter: The True Story of the Manson M... | 1.006760         |
 
 ### Kelebihan dan Kekurangan
 
@@ -346,6 +383,17 @@ Pada bagian ini, kami akan membahas metrik evaluasi yang digunakan untuk menilai
      \]
    - **Cara Kerja**: RMSE menghitung selisih kuadrat antara setiap prediksi dan nilai aktual, kemudian mengambil rata-ratanya dan menghitung akar kuadratnya. RMSE yang lebih rendah menunjukkan model yang lebih baik.
 
+3. **NDCG@K (Normalized Discounted Cumulative Gain)**
+   - **Deskripsi**: NDCG@K mengukur kualitas urutan rekomendasi dengan mempertimbangkan relevansi dan posisi rekomendasi dalam daftar. Ini memberikan bobot lebih pada rekomendasi yang relevan yang muncul lebih awal dalam daftar.
+   - **Formula**: 
+     \[
+     \text{NDCG@K} = \frac{DCG@K}{IDCG@K}
+     \]
+     di mana:
+     - \(DCG@K\) adalah Discounted Cumulative Gain untuk K rekomendasi.
+     - \(IDCG@K\) adalah Ideal DCG untuk K rekomendasi.
+   - **Cara Kerja**: Menghitung DCG dengan memberikan bobot pada relevansi rekomendasi berdasarkan posisinya, kemudian membandingkannya dengan nilai ideal. Nilai NDCG@K yang lebih tinggi menunjukkan model yang lebih baik dalam memberikan rekomendasi yang relevan.
+
 ### Hasil Proyek Berdasarkan Metrik Evaluasi
 
 Setelah menerapkan model dan melakukan evaluasi, berikut adalah hasil yang diperoleh:
@@ -356,9 +404,10 @@ Setelah menerapkan model dan melakukan evaluasi, berikut adalah hasil yang diper
 - **Root Mean Squared Error (RMSE)**: 
   - Hasil RMSE yang diperoleh adalah **0.168**. RMSE yang diperoleh menunjukkan bahwa model telah menghasilkan prediksi yang cukup akurat secara keseluruhan. Meskipun ada beberapa variasi pada prediksi tertentu, nilai RMSE yang relatif rendah ini menunjukkan performa model yang baik. Namun, masih ada peluang untuk lebih menyempurnakan model guna mencapai akurasi yang lebih tinggi.
 
-### Kesimpulan
-Metrik evaluasi yang digunakan memberikan gambaran yang jelas tentang performa sistem rekomendasi. Meskipun hasil menunjukkan bahwa model sudah cukup baik, ada ruang untuk perbaikan, terutama dalam mengurangi kesalahan prediksi dan meningkatkan relevansi rekomendasi. Dengan melakukan tuning model dan eksplorasi lebih lanjut terhadap data, diharapkan performa sistem rekomendasi dapat ditingkatkan.
+- **NDCG@K**: 
+  - Hasil NDCG@5 yang diperoleh adalah **0.7836**. Ini menunjukkan bahwa model memberikan rekomendasi yang relevan dengan baik, terutama pada posisi teratas.
 
----
+### Kesimpulan
+Metrik evaluasi yang digunakan memberikan gambaran yang jelas tentang performa sistem rekomendasi. Meskipun hasil menunjukkan bahwa model sudah cukup baik, ada ruang untuk perbaikan, terutama dalam mengurangi kesalahan prediksi dan meningkatkan relevansi rekomendasi. Dengan melakukan tuning model dan eksplorasi lebih lanjut terhadap data, diharapkan performa sistem rekomendasi dapat ditingkatkan.---
 
 **---Ini adalah bagian akhir laporan---**
